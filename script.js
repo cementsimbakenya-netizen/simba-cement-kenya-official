@@ -18,4 +18,12 @@ function renderCart(){const count=cart.reduce((a,x)=>a+x.qty,0);document.getElem
 function openCart(){document.getElementById('cartPanel').classList.add('open');document.getElementById('cartPanel').setAttribute('aria-hidden','false');renderCart()}
 function closeCart(){document.getElementById('cartPanel').classList.remove('open');document.getElementById('cartPanel').setAttribute('aria-hidden','true')}
 function checkout(e){e.preventDefault();if(!cart.length){alert('Please add at least one product to your cart.');return}const name=document.getElementById('customerName').value.trim(),phone=document.getElementById('customerPhone').value.trim(),location=document.getElementById('deliveryLocation').value.trim(),notes=document.getElementById('orderNotes').value.trim();let total=0;const lines=cart.map(x=>{const p=products.find(q=>q.id===x.id),sub=p.price*x.qty;total+=sub;return `• ${p.name} — ${x.qty} × ${money(p.price)} = ${money(sub)}`});const ref='SC-'+Date.now().toString().slice(-7);const msg=`Hello Simba Cement Kenya!%0A%0A*NEW ORDER ${ref}*%0A${lines.join('%0A')}%0A%0A*TOTAL: ${money(total)}*%0A%0A*Customer details*%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ADelivery location: ${encodeURIComponent(location)}%0ANotes: ${encodeURIComponent(notes||'None')}%0A%0APlease confirm availability and delivery.`;window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');}
-renderProducts();renderCart();
+
+let heroSlideIndex=0;
+let heroTimer;
+function showHeroSlide(index){const slides=document.querySelectorAll('.hero-slide');const dots=document.querySelectorAll('.hero-dot');if(!slides.length)return;heroSlideIndex=(index+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===heroSlideIndex));dots.forEach((d,i)=>d.classList.toggle('active',i===heroSlideIndex));}
+function goHeroSlide(index){showHeroSlide(index);restartHeroTimer()}
+function changeHeroSlide(delta){showHeroSlide(heroSlideIndex+delta);restartHeroTimer()}
+function restartHeroTimer(){clearInterval(heroTimer);heroTimer=setInterval(()=>showHeroSlide(heroSlideIndex+1),6000)}
+
+renderProducts();renderCart();showHeroSlide(0);restartHeroTimer();
