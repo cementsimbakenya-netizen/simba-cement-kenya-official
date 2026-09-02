@@ -1,7 +1,7 @@
 const WHATSAPP='254780079982';
 const products=[
  {id:1,name:'Simba Cement 32.5R',price:550,description:'Reliable general-purpose cement for everyday construction.',image:'https://i.postimg.cc/MH7VkgNJ/Screenshot-2026-09-01-205350.png'},
- {id:2,name:'Simba Cement 42.5N',price:850,description:'High-strength cement for demanding structural work.'},
+ {id:2,name:'Simba Power 42.5N',price:680,description:'High-strength cement for demanding structural work.',image:'https://i.postimg.cc/h4Qq8KWY/Screenshot-2026-09-01-205450.png'},
  {id:3,name:'Simba Cement 42.5R',price:880,description:'Fast-strength development for professional projects.'},
  {id:4,name:'Bulk Cement Supply',price:0,description:'For larger orders and project supply. Request a quotation.'},
  {id:5,name:'Building Materials',price:0,description:'Ask our team about available construction materials.'},
