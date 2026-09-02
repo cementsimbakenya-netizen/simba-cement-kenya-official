@@ -1,4 +1,4 @@
-const WHATSAPP='254780079982';
+const WHATSAPP='254755548557';
 const products=[
  {id:1,name:'Simba Cement 32.5R',price:550,description:'Reliable general-purpose cement for everyday construction.',image:'https://i.postimg.cc/MH7VkgNJ/Screenshot-2026-09-01-205350.png'},
  {id:2,name:'Simba Power 42.5N',price:680,description:'High-strength cement for demanding structural work.',image:'https://i.postimg.cc/h4Qq8KWY/Screenshot-2026-09-01-205450.png'},
