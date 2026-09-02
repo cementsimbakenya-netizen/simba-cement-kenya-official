@@ -6,9 +6,10 @@ const products=[
  {id:4,name:'Barbed Wire 240mts',price:1900,description:'Strong barbed wire for fencing, boundary protection and construction projects.',image:'https://i.postimg.cc/nLmvYs2x/Screenshot-2026-09-02-144319.png'},
  {id:5,name:'Barbed Wire 480mts',price:3400,description:'Long-length barbed wire for fencing, boundary protection and larger construction projects.',image:'https://i.postimg.cc/J7pBXc8d/Screenshot-2026-09-02-135758.png'},
  {id:6,name:'Barbed Wire 610mts',price:4200,description:'Long-length barbed wire for extensive fencing, boundary protection and larger construction projects.',image:'https://i.postimg.cc/9000bK28/Screenshot-2026-09-02-135513.png'},
- {id:7,name:'Bulk Cement Supply',price:0,description:'For larger orders and project supply. Request a quotation.'},
- {id:8,name:'Building Materials',price:0,description:'Ask our team about available construction materials.'},
- {id:9,name:'Project Supply',price:0,description:'Talk to us for contractor and project requirements.'}
+ {id:7,name:'Chainlink 4ft x 18mts',price:2000,description:'Durable chainlink fencing for boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
+ {id:8,name:'Bulk Cement Supply',price:0,description:'For larger orders and project supply. Request a quotation.'},
+ {id:9,name:'Building Materials',price:0,description:'Ask our team about available construction materials.'},
+ {id:10,name:'Project Supply',price:0,description:'Talk to us for contractor and project requirements.'}
 ];
 let cart=JSON.parse(localStorage.getItem('simbaCementOfficialCart')||'[]');
 const money=n=>n?'KES '+n.toLocaleString():'Quote';
