@@ -9,10 +9,7 @@ const products=[
  {id:7,name:'Chainlink 4ft x 18mts',price:2000,description:'Durable chainlink fencing for boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
  {id:8,name:'Chainlink 5ft x 18mts',price:2500,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
  {id:9,name:'Chainlink 6ft x 18mts',price:3000,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
- {id:10,name:'Chainlink 7ft x 18mts',price:3500,description:'Durable chainlink fencing for tall boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
- {id:11,name:'Bulk Cement Supply',price:0,description:'For larger orders and project supply. Request a quotation.'},
- {id:12,name:'Building Materials',price:0,description:'Ask our team about available construction materials.'},
- {id:13,name:'Project Supply',price:0,description:'Talk to us for contractor and project requirements.'}
+ {id:10,name:'Chainlink 7ft x 18mts',price:3500,description:'Durable chainlink fencing for tall boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'}
 ];
 let cart=JSON.parse(localStorage.getItem('simbaCementOfficialCart')||'[]');
 const money=n=>n?'KES '+n.toLocaleString():'Quote';
