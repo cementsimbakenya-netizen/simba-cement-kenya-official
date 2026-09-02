@@ -1,19 +1,20 @@
 const WHATSAPP='254780079982';
+const img=(url,w=900,q=76)=>`https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w}&q=${q}&output=webp`;
 const products=[
- {id:1,name:'Simba Cement 32.5R',price:550,description:'Reliable general-purpose cement for everyday construction.',image:'https://i.postimg.cc/MH7VkgNJ/Screenshot-2026-09-01-205350.png'},
- {id:2,name:'Simba Power 42.5N',price:680,description:'High-strength cement for demanding structural work.',image:'https://i.postimg.cc/h4Qq8KWY/Screenshot-2026-09-01-205450.png'},
- {id:3,name:'Paving Blocks (600mm)',price:650,description:'Durable paving blocks for driveways, walkways and outdoor construction.',image:'https://i.postimg.cc/y8QfrS09/Screenshot-2026-09-02-144841.png'},
- {id:4,name:'Barbed Wire 240mts',price:1900,description:'Strong barbed wire for fencing, boundary protection and construction projects.',image:'https://i.postimg.cc/nLmvYs2x/Screenshot-2026-09-02-144319.png'},
- {id:5,name:'Barbed Wire 480mts',price:3400,description:'Long-length barbed wire for fencing, boundary protection and larger construction projects.',image:'https://i.postimg.cc/J7pBXc8d/Screenshot-2026-09-02-135758.png'},
- {id:6,name:'Barbed Wire 610mts',price:4200,description:'Long-length barbed wire for extensive fencing, boundary protection and larger construction projects.',image:'https://i.postimg.cc/9000bK28/Screenshot-2026-09-02-135513.png'},
- {id:7,name:'Chainlink 4ft x 18mts',price:2000,description:'Durable chainlink fencing for boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
- {id:8,name:'Chainlink 5ft x 18mts',price:2500,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
- {id:9,name:'Chainlink 6ft x 18mts',price:3000,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
- {id:10,name:'Chainlink 7ft x 18mts',price:3500,description:'Durable chainlink fencing for tall boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'}
+ {id:1,name:'Simba Cement 32.5R',price:550,description:'Reliable general-purpose cement for everyday construction.',image:img('https://i.postimg.cc/MH7VkgNJ/Screenshot-2026-09-01-205350.png',700)},
+ {id:2,name:'Simba Power 42.5N',price:680,description:'High-strength cement for demanding structural work.',image:img('https://i.postimg.cc/h4Qq8KWY/Screenshot-2026-09-01-205450.png',700)},
+ {id:3,name:'Paving Blocks (600mm)',price:650,description:'Durable paving blocks for driveways, walkways and outdoor construction.',image:img('https://i.postimg.cc/y8QfrS09/Screenshot-2026-09-02-144841.png',700)},
+ {id:4,name:'Barbed Wire 240mts',price:1900,description:'Strong barbed wire for fencing, boundary protection and construction projects.',image:img('https://i.postimg.cc/nLmvYs2x/Screenshot-2026-09-02-144319.png',700)},
+ {id:5,name:'Barbed Wire 480mts',price:3400,description:'Long-length barbed wire for fencing, boundary protection and larger construction projects.',image:img('https://i.postimg.cc/J7pBXc8d/Screenshot-2026-09-02-135758.png',700)},
+ {id:6,name:'Barbed Wire 610mts',price:4200,description:'Long-length barbed wire for extensive fencing, boundary protection and larger construction projects.',image:img('https://i.postimg.cc/9000bK28/Screenshot-2026-09-02-135513.png',700)},
+ {id:7,name:'Chainlink 4ft x 18mts',price:2000,description:'Durable chainlink fencing for boundaries, compounds and construction projects.',image:img('https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png',700)},
+ {id:8,name:'Chainlink 5ft x 18mts',price:2500,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:img('https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png',700)},
+ {id:9,name:'Chainlink 6ft x 18mts',price:3000,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:img('https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png',700)},
+ {id:10,name:'Chainlink 7ft x 18mts',price:3500,description:'Durable chainlink fencing for tall boundaries, compounds and construction projects.',image:img('https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png',700)}
 ];
 let cart=JSON.parse(localStorage.getItem('simbaCementOfficialCart')||'[]');
 const money=n=>n?'KES '+n.toLocaleString():'Quote';
-function renderProducts(){const grid=document.getElementById('productGrid');if(!grid)return;grid.innerHTML=products.map((p,i)=>`<article class="product"><div class="product-image">${p.image?`<img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" fetchpriority="low" onerror="this.style.display='none'">`:'<div class="bag">SIMBA<br>CEMENT</div>'}</div><h3>${p.name}</h3><p>${p.description}</p><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${p.id})">${p.price?'Add to Cart':'Request Quote'}</button></article>`).join('')}
+function renderProducts(){const grid=document.getElementById('productGrid');if(!grid)return;grid.innerHTML=products.map(p=>`<article class="product"><div class="product-image">${p.image?`<img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" fetchpriority="low" width="700" height="500" onerror="this.style.display='none'">`:'<div class="bag">SIMBA<br>CEMENT</div>'}</div><h3>${p.name}</h3><p>${p.description}</p><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${p.id})">${p.price?'Add to Cart':'Request Quote'}</button></article>`).join('')}
 function save(){localStorage.setItem('simbaCementOfficialCart',JSON.stringify(cart));renderCart();}
 function addToCart(id){const p=products.find(x=>x.id===id);if(!p.price){window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent('Hello Simba Cement Kenya, I would like a quotation for '+p.name+'.'),'_blank');return}const item=cart.find(x=>x.id===id);item?item.qty++:cart.push({id,qty:1});save();openCart()}
 function changeQty(id,delta){const x=cart.find(i=>i.id===id);if(!x)return;x.qty+=delta;if(x.qty<1)cart=cart.filter(i=>i.id!==id);save()}
