@@ -11,15 +11,11 @@ const products=[
  {id:9,name:'Chainlink 6ft x 18mts',price:3000,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
  {id:10,name:'Chainlink 7ft x 18mts',price:3500,description:'Durable chainlink fencing for tall boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'}
 ];
-const imageFallbacks={
- 'https://i.postimg.cc/J7pBXc8d/Screenshot-2026-09-02-135758.png':'https://wsrv.nl/?url=i.postimg.cc/J7pBXc8d/Screenshot-2026-09-02-135758.png',
- 'https://i.postimg.cc/9000bK28/Screenshot-2026-09-02-135513.png':'https://wsrv.nl/?url=i.postimg.cc/9000bK28/Screenshot-2026-09-02-135513.png',
- 'https://i.postimg.cc/9QZkzf9P/Screenshot-2026-09-01-205904.png':'https://wsrv.nl/?url=i.postimg.cc/9QZkzf9P/Screenshot-2026-09-01-205904.png'
-};
-function imageError(img){const original=img.dataset.original||img.src;if(!img.dataset.fallback&&imageFallbacks[original]){img.dataset.original=original;img.dataset.fallback='1';img.src=imageFallbacks[original];return}img.style.display='none'}
+const imageFallbacks={};
+function imageError(img){img.style.display='none'}
 let cart=JSON.parse(localStorage.getItem('simbaCementOfficialCart')||'[]');
 const money=n=>n?'KES '+n.toLocaleString():'Quote';
-function renderProducts(){const grid=document.getElementById('productGrid');if(!grid)return;grid.innerHTML=products.map(p=>`<article class="product"><div class="product-image"><img src="${p.image}" alt="${p.name}" loading="eager" decoding="async" width="700" height="500" onerror="imageError(this)"></div><h3>${p.name}</h3><p>${p.description}</p><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></article>`).join('')}
+function renderProducts(){const grid=document.getElementById('productGrid');if(!grid)return;grid.innerHTML=products.map(p=>`<article class="product"><div class="product-image ${p.id===5||p.id===6?'product-image-wire':''}"><img src="${p.image}" alt="${p.name}" loading="eager" decoding="async" onerror="imageError(this)"></div><h3>${p.name}</h3><p>${p.description}</p><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></article>`).join('')}
 function save(){localStorage.setItem('simbaCementOfficialCart',JSON.stringify(cart));renderCart();}
 function addToCart(id){const p=products.find(x=>x.id===id);const item=cart.find(x=>x.id===id);item?item.qty++:cart.push({id,qty:1});save();openCart()}
 function changeQty(id,delta){const x=cart.find(i=>i.id===id);if(!x)return;x.qty+=delta;if(x.qty<1)cart=cart.filter(i=>i.id!==id);save()}
@@ -31,5 +27,5 @@ function checkout(e){e.preventDefault();if(!cart.length){alert('Please add at le
 function submitReview(e){e.preventDefault();const name=document.getElementById('reviewName').value.trim();const box=document.getElementById('reviewThankYou');box.innerHTML=`<strong>Thank you, ${name || 'for your'}!</strong><br>Your review has been received. We appreciate you taking the time to share your experience.`;box.classList.add('show');e.target.reset();}
 function renderHero(){const slides=document.querySelectorAll('.hero-slide');const dots=document.querySelectorAll('.hero-dot');if(!slides.length)return;let index=0;const show=()=>{slides.forEach((s,i)=>s.classList.toggle('active',i===index));dots.forEach((d,i)=>d.classList.toggle('active',i===index));slides[index].style.backgroundImage=`url("${slides[index].dataset.bg}")`;index=(index+1)%slides.length};show();setInterval(show,6000)}
 function goHeroSlide(index){const slides=document.querySelectorAll('.hero-slide');const dots=document.querySelectorAll('.hero-dot');if(!slides.length)return;slides.forEach((s,i)=>{s.classList.toggle('active',i===index);if(i===index)s.style.backgroundImage=`url("${s.dataset.bg}")`});dots.forEach((d,i)=>d.classList.toggle('active',i===index))}
-function fixAboutImage(){const about=document.querySelector('.about-photo');if(!about)return;about.addEventListener('error',()=>{const original=about.dataset.original||about.src;if(!about.dataset.fallback&&imageFallbacks[original]){about.dataset.original=original;about.dataset.fallback='1';about.src=imageFallbacks[original]}else{about.style.display='none'}})}
+function fixAboutImage(){const about=document.querySelector('.about-photo');if(!about)return;about.addEventListener('error',()=>{about.style.display='none'})}
 renderProducts();renderCart();fixAboutImage();renderHero();
