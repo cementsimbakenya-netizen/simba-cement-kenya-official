@@ -9,7 +9,7 @@ const products=[
 ];
 let cart=JSON.parse(localStorage.getItem('simbaCementOfficialCart')||'[]');
 const money=n=>n?'KES '+n.toLocaleString():'Quote';
-function renderProducts(){document.getElementById('productGrid').innerHTML=products.map(p=>`<article class="product"><div class="product-image">${p.image?`<img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async">`:'<div class="bag">SIMBA<br>CEMENT</div>'}</div><h3>${p.name}</h3><p>${p.description}</p><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${p.id})">${p.price?'Add to Cart':'Request Quote'}</button></article>`).join('')}
+function renderProducts(){document.getElementById('productGrid').innerHTML=products.map(p=>`<article class="product"><div class="product-image">${p.image?`<img src="${p.image}" alt="${p.name}" loading="eager" decoding="async" onerror="this.style.display='none'">`:'<div class="bag">SIMBA<br>CEMENT</div>'}</div><h3>${p.name}</h3><p>${p.description}</p><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${p.id})">${p.price?'Add to Cart':'Request Quote'}</button></article>`).join('')}
 function save(){localStorage.setItem('simbaCementOfficialCart',JSON.stringify(cart));renderCart();}
 function addToCart(id){const p=products.find(x=>x.id===id);if(!p.price){window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent('Hello Simba Cement Kenya, I would like a quotation for '+p.name+'.'),'_blank');return}const item=cart.find(x=>x.id===id);item?item.qty++:cart.push({id,qty:1});save();openCart()}
 function changeQty(id,delta){const x=cart.find(i=>i.id===id);if(!x)return;x.qty+=delta;if(x.qty<1)cart=cart.filter(i=>i.id!==id);save()}
