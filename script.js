@@ -2,10 +2,11 @@ const WHATSAPP='254780079982';
 const products=[
  {id:1,name:'Simba Cement 32.5R',price:550,description:'Reliable general-purpose cement for everyday construction.',image:'https://i.postimg.cc/MH7VkgNJ/Screenshot-2026-09-01-205350.png'},
  {id:2,name:'Simba Power 42.5N',price:680,description:'High-strength cement for demanding structural work.',image:'https://i.postimg.cc/h4Qq8KWY/Screenshot-2026-09-01-205450.png'},
- {id:3,name:'Simba Cement 42.5R',price:880,description:'Fast-strength development for professional projects.'},
- {id:4,name:'Bulk Cement Supply',price:0,description:'For larger orders and project supply. Request a quotation.'},
- {id:5,name:'Building Materials',price:0,description:'Ask our team about available construction materials.'},
- {id:6,name:'Project Supply',price:0,description:'Talk to us for contractor and project requirements.'}
+ {id:3,name:'Paving Blocks (600mm)',price:650,description:'Durable paving blocks for driveways, walkways and outdoor construction.',image:'https://i.postimg.cc/y8QfrS09/Screenshot-2026-09-02-144841.png'},
+ {id:4,name:'Barbed Wire 240mts',price:1900,description:'Strong barbed wire for fencing, boundary protection and construction projects.',image:'https://i.postimg.cc/nLmvYs2x/Screenshot-2026-09-02-144319.png'},
+ {id:5,name:'Bulk Cement Supply',price:0,description:'For larger orders and project supply. Request a quotation.'},
+ {id:6,name:'Building Materials',price:0,description:'Ask our team about available construction materials.'},
+ {id:7,name:'Project Supply',price:0,description:'Talk to us for contractor and project requirements.'}
 ];
 let cart=JSON.parse(localStorage.getItem('simbaCementOfficialCart')||'[]');
 const money=n=>n?'KES '+n.toLocaleString():'Quote';
