@@ -1,21 +1,22 @@
 const WHATSAPP='254755548557';
+const SITE='https://simbakenyacement.com';
 const products=[
- {id:1,name:'Simba Cement 32.5R',price:550,description:'Reliable general-purpose cement for everyday construction.',image:'https://i.postimg.cc/MH7VkgNJ/Screenshot-2026-09-01-205350.png'},
- {id:2,name:'Simba Power 42.5N',price:680,description:'High-strength cement for demanding structural work.',image:'https://i.postimg.cc/h4Qq8KWY/Screenshot-2026-09-01-205450.png'},
- {id:3,name:'Paving Blocks (600mm)',price:650,description:'Durable paving blocks for driveways, walkways and outdoor construction.',image:'https://i.postimg.cc/y8QfrS09/Screenshot-2026-09-02-144841.png'},
- {id:4,name:'Barbed Wire 240mts',price:1900,description:'Strong barbed wire for fencing, boundary protection and construction projects.',image:'https://i.postimg.cc/nLmvYs2x/Screenshot-2026-09-02-144319.png'},
- {id:5,name:'Barbed Wire 480mts',price:3400,description:'Long-length barbed wire for fencing, boundary protection and larger construction projects.',image:'https://i.postimg.cc/J7pBXc8d/Screenshot-2026-09-02-135758.png'},
- {id:6,name:'Barbed Wire 610mts',price:4200,description:'Long-length barbed wire for extensive fencing, boundary protection and larger construction projects.',image:'https://i.postimg.cc/9000bK28/Screenshot-2026-09-02-135513.png'},
- {id:7,name:'Chainlink 4ft x 18mts',price:2000,description:'Durable chainlink fencing for boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
- {id:8,name:'Chainlink 5ft x 18mts',price:2500,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
- {id:9,name:'Chainlink 6ft x 18mts',price:3000,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'},
- {id:10,name:'Chainlink 7ft x 18mts',price:3500,description:'Durable chainlink fencing for tall boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png'}
+ {id:1,name:'Simba Cement 32.5R',price:550,description:'Reliable general-purpose cement for everyday construction.',image:'https://i.postimg.cc/MH7VkgNJ/Screenshot-2026-09-01-205350.png',url:`${SITE}/product/simba-cement-32-5r/`},
+ {id:2,name:'Simba Power 42.5N',price:680,description:'High-strength cement for demanding structural work.',image:'https://i.postimg.cc/h4Qq8KWY/Screenshot-2026-09-01-205450.png',url:`${SITE}/product/simba-power-42-5n/`},
+ {id:3,name:'Paving Blocks (600mm)',price:650,description:'Durable paving blocks for driveways, walkways and outdoor construction.',image:'https://i.postimg.cc/y8QfrS09/Screenshot-2026-09-02-144841.png',url:`${SITE}/product/paving-blocks-600mm/`},
+ {id:4,name:'Barbed Wire 240mts',price:1900,description:'Strong barbed wire for fencing, boundary protection and construction projects.',image:'https://i.postimg.cc/nLmvYs2x/Screenshot-2026-09-02-144319.png',url:`${SITE}/product/barbed-wire-240mts/`},
+ {id:5,name:'Barbed Wire 480mts',price:3400,description:'Long-length barbed wire for fencing, boundary protection and larger construction projects.',image:'https://i.postimg.cc/J7pBXc8d/Screenshot-2026-09-02-135758.png',url:`${SITE}/product/barbed-wire-480mts/`},
+ {id:6,name:'Barbed Wire 610mts',price:4200,description:'Long-length barbed wire for extensive fencing, boundary protection and larger construction projects.',image:'https://i.postimg.cc/9000bK28/Screenshot-2026-09-02-135513.png',url:`${SITE}/product/barbed-wire-610mts/`},
+ {id:7,name:'Chainlink 4ft x 18mts',price:2000,description:'Durable chainlink fencing for boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png',url:`${SITE}/product/chainlink-4ftx18mts/`},
+ {id:8,name:'Chainlink 5ft x 18mts',price:2500,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png',url:`${SITE}/product/chainlink-5ftx18mts/`},
+ {id:9,name:'Chainlink 6ft x 18mts',price:3000,description:'Durable chainlink fencing for taller boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png',url:`${SITE}/product/chainlink-6ftx18mts/`},
+ {id:10,name:'Chainlink 7ft x 18mts',price:3500,description:'Durable chainlink fencing for tall boundaries, compounds and construction projects.',image:'https://i.postimg.cc/k4fFD0wf/Screenshot-2026-09-02-133720.png',url:`${SITE}/product/chainlink-7ftx18mts/`}
 ];
 const imageFallbacks={};
 function imageError(img){img.style.display='none'}
 let cart=JSON.parse(localStorage.getItem('simbaCementOfficialCart')||'[]');
 const money=n=>n?'KES '+n.toLocaleString():'Quote';
-function renderProducts(){const grid=document.getElementById('productGrid');if(!grid)return;grid.innerHTML=products.map(p=>`<article class="product"><div class="product-image ${p.id===5||p.id===6?'product-image-wire':''}"><img src="${p.image}" alt="${p.name}" loading="eager" decoding="async" onerror="imageError(this)"></div><h3>${p.name}</h3><p>${p.description}</p><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></article>`).join('')}
+function renderProducts(){const grid=document.getElementById('productGrid');if(!grid)return;grid.innerHTML=products.map(p=>`<article class="product"><a class="product-link" href="${p.url}" aria-label="View ${p.name}"><div class="product-image ${p.id===5||p.id===6?'product-image-wire':''}"><img src="${p.image}" alt="${p.name}" loading="eager" decoding="async" onerror="imageError(this)"></div></a><h3><a href="${p.url}">${p.name}</a></h3><p>${p.description}</p><div class="price">${money(p.price)}</div><div class="product-actions"><a class="btn product-view" href="${p.url}">VIEW PRODUCT</a><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></div></article>`).join('')}
 function save(){localStorage.setItem('simbaCementOfficialCart',JSON.stringify(cart));renderCart();}
 function addToCart(id){const p=products.find(x=>x.id===id);const item=cart.find(x=>x.id===id);item?item.qty++:cart.push({id,qty:1});save();openCart()}
 function changeQty(id,delta){const x=cart.find(i=>i.id===id);if(!x)return;x.qty+=delta;if(x.qty<1)cart=cart.filter(i=>i.id!==id);save()}
