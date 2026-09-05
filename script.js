@@ -18,7 +18,7 @@ let cart=JSON.parse(localStorage.getItem('simbaCementOfficialCart')||'[]');
 const money=n=>n?'KES '+n.toLocaleString():'Quote';
 function renderProducts(){const grid=document.getElementById('productGrid');if(!grid)return;grid.innerHTML=products.map(p=>`<article class="product"><a class="product-link" href="${p.url}" aria-label="View ${p.name}"><div class="product-image ${p.id===5||p.id===6?'product-image-wire':''}"><img src="${p.image}" alt="${p.name}" loading="eager" decoding="async" onerror="imageError(this)"></div></a><h3><a href="${p.url}">${p.name}</a></h3><p>${p.description}</p><div class="price">${money(p.price)}</div><div class="product-actions"><a class="btn product-view" href="${p.url}">VIEW PRODUCT</a><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></div></article>`).join('')}
 function save(){localStorage.setItem('simbaCementOfficialCart',JSON.stringify(cart));renderCart();}
-function trackAddToCart(p){if(typeof gtag==='function'){gtag('event','conversion_event_add_to_cart',{item_id:String(p.id),item_name:p.name,value:p.price,currency:'KES'});}}
+function trackAddToCart(p){if(typeof gtag!=='function')return;gtag('event','add_to_cart',{currency:'KES',value:p.price,items:[{item_id:String(p.id),item_name:p.name,price:p.price,quantity:1}]});gtag('event','conversion',{send_to:'AW-18427125440/tvbICMqz7O4cEMC93tJE',value:p.price,currency:'KES'});}
 function addToCart(id){const p=products.find(x=>x.id===id);if(!p)return;const item=cart.find(x=>x.id===id);item?item.qty++:cart.push({id,qty:1});trackAddToCart(p);save();openCart()}
 function changeQty(id,delta){const x=cart.find(i=>i.id===id);if(!x)return;x.qty+=delta;if(x.qty<1)cart=cart.filter(i=>i.id!==id);save()}
 function removeItem(id){cart=cart.filter(i=>i.id!==id);save()}
