@@ -23,6 +23,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Connect Google Ads to existing Google tag
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          google_analytics_config = "gtag('config', 'G-BXGK5X7FBC');"
+          google_ads_config = "gtag('config', 'AW-18427125440');"
+
+          for path in Path('.').rglob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              if google_analytics_config in text and google_ads_config not in text:
+                  text = text.replace(
+                      google_analytics_config,
+                      google_analytics_config + "\n    " + google_ads_config,
+                      1,
+                  )
+                  path.write_text(text, encoding='utf-8')
+          PY
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
