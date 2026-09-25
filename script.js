@@ -1,4 +1,4 @@
-const WHATSAPP='254755548557';
+const WHATSAPP='254752000051';
 const SITE='https://simbakenyacement.com';
 const products=[
  {id:1,name:'Simba Cement 32.5R',price:550,description:'Reliable general-purpose cement for everyday construction.',image:'https://i.postimg.cc/MH7VkgNJ/Screenshot-2026-09-01-205350.png',url:`${SITE}/product/simba-cement-32-5r/`},
