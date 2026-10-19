@@ -25,12 +25,21 @@
       return false;
     }
     fallbackTimer = window.setTimeout(continuePhoneAction, 1000);
+    // Existing conversion action: Click to call (1)
     window.gtag('event', 'conversion', {
       send_to: 'AW-17858218372/XjEHCKrhybEcEISTu8NC',
       value: 1.0,
       currency: 'USD',
       event_callback: continuePhoneAction,
       event_timeout: 800
+    });
+    // Additional conversion action requested by the site owner.
+    // Keep this as a separate Google Ads conversion action; avoid making
+    // both actions Primary if you do not want one click counted twice.
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-17858218372/-UVXCKHnka8cEISTu8NC',
+      value: 1.0,
+      currency: 'USD'
     });
     return false;
   };
