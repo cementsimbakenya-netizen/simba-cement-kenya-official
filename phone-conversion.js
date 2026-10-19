@@ -26,7 +26,7 @@
     }
     fallbackTimer = window.setTimeout(continuePhoneAction, 1000);
     window.gtag('event', 'conversion', {
-      send_to: 'AW-17858218372/-UVXCKHnka8cEISTu8NC',
+      send_to: 'AW-17858218372/XjEHCKrhybEcEISTu8NC',
       value: 1.0,
       currency: 'USD',
       event_callback: continuePhoneAction,
