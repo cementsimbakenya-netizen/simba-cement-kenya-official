@@ -29,7 +29,7 @@ jobs:
           from pathlib import Path
 
           google_analytics_config = "gtag('config', 'G-BXGK5X7FBC');"
-          google_ads_config = "gtag('config', 'AW-18427125440');"
+          google_ads_config = "gtag('config', 'AW-17858218372');"
 
           for path in Path('.').rglob('*.html'):
               text = path.read_text(encoding='utf-8')
